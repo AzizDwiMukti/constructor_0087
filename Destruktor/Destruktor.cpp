@@ -1,35 +1,48 @@
 #include <iostream>
-#include <string>
 using namespace std;
 
-class Mahasiswa {
+class angka {
 private:
-	int nim;
-	string nama,
+    int* arr;
+    int panjang;
 public:
-	Mahasiswa();
-	Mahasiswa(int);
-	Mahasiswa(string);
-	Mahasiswa(int iNim, string iNama);
-	void cetak();
+    angka(int); //Constructor
+    ~angka(); //Destructor
+    void cetakData();
+    void isiData();
 };
 
-Mahasiswa :: Mahasiswa() {
-	nim = 0;
-	nama = "";
+//Definisi member function
+angka::angka(int i) { //Constructor
+    panjang = i;
+    arr = new int[i];
+    isiData();
 }
 
-Mahasiswa::Mahasiswa(int iNim) {
-	nim - iNim;
+angka::~angka() {    //Destructor
+    cout << endl;
+    cetakData();
+    delete[]arr;
+    cout << "Alamat Array Sudah Dilepaskan" << endl;
 }
 
-Mahasiswa::Mahasiswa(int iNim, string iNama) {
-	nim - iNim;
-	nama - iNama;
+void angka::cetakData() {
+    for (int i = 1; i <= panjang; i++) {
+        cout << i << " = " << arr[i] << endl;
+    }
 }
 
-void Mahasiswa::cetak() {
-	cout << endl << "Nim =" << nim << endl;
-	cout << " Nama = " << nama << endl;
+void angka::isiData() {
+    for (int i = 1; i <= panjang; i++) {
+        cout << i << " = "; cin >> arr[i];
+    }
+    cout << endl;
 }
 
+int main() {
+    angka belajarcpp(3); //Constructor dipanggil
+    angka* ptrBelajarcpp = new angka(5); //Constructor dipanggil
+    delete ptrBelajarcpp; //Destructor dipanggil
+
+    return 0;
+} // Destructor dipanggil
